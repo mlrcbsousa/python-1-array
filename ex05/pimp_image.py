@@ -39,7 +39,7 @@ def ft_blue(array: np.ndarray) -> np.ndarray:
 def ft_grey(array: np.ndarray) -> np.ndarray:
     """Grayscale the image received."""
 
-    result = (array[:, :, 0] / 3) + (array[:, :, 1] / 3) + (array[:, :, 2] / 3)
-    result = result.astype(int)
-    result = np.stack((result,) * 3, axis=-1)
+    result = array.copy()
+    result[:, :, 0] = result[:, :, 1]
+    result[:, :, 2] = result[:, :, 1]
     return result
