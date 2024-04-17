@@ -23,18 +23,23 @@ def give_bmi(
         If the lists are not the same size or contain non-numeric items.
     """
 
-    assert height is not None and weight is not None, "Can not be None."
+    try:
+        assert height is not None and weight is not None, "Can not be None."
 
-    h = np.array(height)
-    w = np.array(weight)
+        h = np.array(height)
+        w = np.array(weight)
 
-    assert h.ndim == w.ndim == 1, "Lists must be 1D."
-    assert h.size == w.size, "Lists must be the same length."
+        assert h.ndim == w.ndim == 1, "Lists must be 1D."
+        assert h.size == w.size, "Lists must be the same length."
 
-    v = np.concatenate((h, w))
+        v = np.concatenate((h, w))
 
-    assert np.isin(v.dtype, [int, float]), "All values must be ints or floats."
-    assert np.all(v > 0), "All values must be positive."
+        assert np.isin(v.dtype, [int, float]), "All values must be numeric."
+        assert np.all(v > 0), "All values must be positive."
+
+    except AssertionError as e:
+        print(f"AssertionError: {e}")
+        return
 
     return (w / (h ** 2)).tolist()
 
@@ -60,12 +65,17 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
         If the BMI list contains non-numeric items or the limit is not a number
     """
 
-    assert bmi is not None and limit is not None, "Can not be None."
+    try:
+        assert bmi is not None and limit is not None, "Can not be None."
 
-    b = np.array(bmi)
+        b = np.array(bmi)
 
-    assert np.isin(b.dtype, [int, float]), "All values must be ints or floats."
-    assert np.all(b > 0), "All values must be positive."
-    assert limit > 0, "Limit must be positive."
+        assert np.isin(b.dtype, [int, float]), "All values must be numeric."
+        assert np.all(b > 0), "All values must be positive."
+        assert limit > 0, "Limit must be positive."
+
+    except AssertionError as e:
+        print(f"AssertionError: {e}")
+        return
 
     return (b > limit).tolist()
