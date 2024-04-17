@@ -33,7 +33,7 @@ def zoom(img: np.ndarray) -> np.ndarray:
 def main():
     """
     Main function that loads an image, slices it, converts it to grayscale,
-    and displays both the original sliced image and the grayscale image.
+    and displays the grayscale image.
     """
 
     img = ft_load("animal.jpeg")
