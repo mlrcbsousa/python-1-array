@@ -1,7 +1,5 @@
 import numpy as np
 
-INVERTED_GRAYSCALE = [3.34, 1.7, 8.77]
-
 
 def ft_invert(array: np.ndarray) -> np.ndarray:
     """Inverts the color of the image received."""
